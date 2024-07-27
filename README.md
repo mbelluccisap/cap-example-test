@@ -66,5 +66,5 @@ Modify the `srv/catalog-service.cds` File:
  - Create a new action called `fetchProducts` that accepts data as a String.
 Modify the `srv/catalog-service.js` File:
  - Implement the `fetchProducts` action.
- - Use a Node.js callback to read products with a price less than $20
+ - Use a Node.js callback to read products with CDS with a price less than $20
  - log result
