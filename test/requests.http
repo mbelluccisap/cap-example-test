@@ -1,0 +1,30 @@
+@server = http://localhost:4004
+
+
+### ------------------------------------------------------------------------
+# Get service Products
+GET {{server}}/odata/v4/catalog/Products
+
+
+
+
+### ------------------------------------------------------------------------
+# Create Order
+POST {{server}}/odata/v4/catalog/Orders
+Content-Type: application/json
+
+{
+    "ID": "f3512d26-72f6-4290-9265-63ad69eccc13",
+    "productID_ID": "f3512d26-72f6-4290-9265-63ad69eccc13",
+    "quantity": 2,
+    "status": "Pending",
+    "totalPrice": "21.98",
+    "orderDate": "2023-01-01T00:00:00Z",
+    "customer_ID": "f3512d26-72f6-4290-9265-63ad69eccc13"
+}
+
+
+
+### ------------------------------------------------------------------------
+# Custom Action fetchProducts
+GET {{server}}/odata/v4/catalog/fetchProducts('Product A')
