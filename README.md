@@ -38,15 +38,14 @@ Learn more at https://cap.cloud.sap/docs/get-started/.
 
 
 ### Task 2: Implementing Asynchronous Operations
-In this task, you will modify the existing service to perform asynchronous operations. Specifically, you will fetch additional data from an external API when creating an order.
 
-Specific Requirement:
-1. Modify the `srv/catalog-service.js` File:
+#### Steps
+ - Modify the `srv/catalog-service.js` File:
  - Implement an asynchronous operation to fetch data from https://jsonplaceholder.typicode.com/todos/1 when an order is created.
  - Use the fetched data to update the order's status.
  - Locate the CREATE operation for the Orders entity.
  - Add an asynchronous call to fetch data from the external API.
- - Update the order's status using the fetched data, if 'copmleted' is true then update Status to 'Shipped' other wise 'Pending'
+ - Update the order's status using the fetched data, if 'completed' is true then update Status to 'Shipped' other wise 'Pending'
  - use the `test/requests.http` to test the functionality
  - Use the Following API:
  https://jsonplaceholder.typicode.com/todos/1
@@ -61,10 +60,15 @@ The API returns:
 }
 ```
 
-## Task 3: Implementing a Node.js Callback
-Modify the `srv/catalog-service.cds` File:
- - Create a new action called `fetchProducts` that accepts data as a String.
+## Task 3: Creating an Action to Find Products
+Open srv/catalog-service.cds:
+ - Add a new action called `fetchProducts` that accepts a parameter maxPrice and returns array of products.
+Open srv/catalog-service.js:
+ - Implement the callbackTest action.
+ - Return all products with a price less than maxPrice.
+
+## Task 4: Implementing a Background Job with cds.spawn (or any callback)
+Implement a callback function using cds.spawn to run an additional background job **AFTER** the API has returned the data
 Modify the `srv/catalog-service.js` File:
- - Implement the `fetchProducts` action.
- - Use a Node.js callback to read products with CDS with a price less than $20
- - log result
+ - Implement a background job using cds.spawn in the `fetchProducts` action
+ - Update a counter each time the fetchProducts action is called.

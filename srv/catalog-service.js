@@ -1,6 +1,7 @@
 const cds = require('@sap/cds');
 const axios = require('axios');
 module.exports = cds.service.impl(async function() {
+    let counter = 0;
     const { Orders, Products, Categories, Customers } = this.entities;
 
     this.after('READ', 'Products', async (data, req) => {
